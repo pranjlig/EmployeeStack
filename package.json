@@ -1,0 +1,24 @@
+{
+  "name": "employee-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.0",
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "email-check": "^1.1.0",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "instadate": "^0.6.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.1.5"
+  }
+}

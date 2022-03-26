@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (success && success.length) {%> 
+        <div class="alert alert-success alert-dismissible fade show alert-div" role="alert">
+          <p class="alert-p"><%- success -%> </p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%> 
+    <% if (error && error.length) {%> 
+        <div class="alert alert-danger alert-dismissible fade show alert-div" role="alert">
+            <p class="alert-p"><%- error -%> </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% }%> 
+    <form action="/logout" method="POST">
+        <button>Logout</button>
+    </form>
+    <form action=<%- `/employee/${employee._id}/add-entry` %>  method="POST">
+        <div>
+            <label for="date">Date of Work: </label>
+            <input type="date" id="date" name="date" class="datePicker" max=<%- maxDate %> min=<%- minDate %>  required>
+            <!-- <input type="date" id="date" name="date" class="datePicker" required> -->
+        </div>
+        <div>
+            <label for="hours">Hours</label>
+            <input type="number" name="hours" min="1" id="hours" required step="any">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description">
+        </div>
+
+        <select name="project" id="project" required>
+            <% if (projects && projects.length) {%>
+                <% for (const project of projects) { %>
+                <option value=<%= [project._id, project.name] %> ><%= project.name %> </option>
+                <% } %>  
+            <% } %>  
+        </select>
+        <button>Submit</button>
+    </form>
+    <h2>Entries</h2>
+        <table border="1px">
+            <thead>
+                <th>Date</th>
+                <th>Project</th>
+                <th>Hours</th>
+                <th>Description</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <% if (employee.entries && employee.entries.length) { %>
+                    <% for (const entry of employee.entries) { %>
+                    <tr>
+                        <td><%- entry.date.toLocaleString().split(",")[0] %> </td>
+                        <td><%- entry.projectName %> </td>
+                        <td><%- entry.hours %> </td>
+                        <td><%- entry.description %> </td>
+                        <td>
+                            <form action=<%- `/employee/${employee._id}/delete-entry/${entry._id}?_method=delete`%> method="POST">
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% } %>  
+                <% } %> 
+            </tbody>
+        </table>
+    <script type="text/javascript" src="/date.js"></script>
+</body>
+</html>

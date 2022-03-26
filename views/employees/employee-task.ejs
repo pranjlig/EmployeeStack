@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Task</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/admin-employee.css">
+    <link rel="stylesheet" href="/css/alerts.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container-fluid">
+            <!-- offcanvas-tr -->
+            <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
+            </button>
+            <a class="navbar-brand fw-bold text-uppercase me-auto" href="#">Employee</a>
+
+            <div>
+                <ul class="navbar-nav mb-2 mb-lg-0  ms-auto">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">                           
+                            <li><a class="dropdown-item" href=<%- `/employee/${employee._id}/change-password` %> >Change Password</a></li>
+                            <li><a class="dropdown-item" href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <!-- Offcanvas -->
+
+
+
+    <div class="offcanvas offcanvas-start sidebar-nav navbar-custom text-white" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+
+        <div class="offcanvas-body p-0">
+            <nav class="navbar-dark">
+                <ul class="navbar-nav">
+                    <li class="mt-2">
+                        <div class="text-muted small fw-bold text-uppercase px-3">
+                            navigation
+                        </div>
+                    </li>
+
+                    <li class="mt-2 sidebar-link">
+
+                        <a href=<%- `/employee/${employee._id}/add-task` %>  class=" nav-link px-3 active">
+                            <span class="me-2"><i class="bi bi-list-task"></i></span><span class="light">Manage
+                                Task</span>
+                        </a>
+                    </li>
+                    <li class="mt-2 sidebar-link">
+
+                        <a href=<%- `/employee/${employee._id}/profile`  %> class=" nav-link px-3">
+                            <span class="me-2"><i class="bi bi-person-circle"></i></span><span
+                                class="light">Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+    <!-- Offcanvas -->
+    <main class="mt-5 pt-3">
+        <div class="container-fluid top-container">
+            <% if (success && success.length) {%> 
+                <div class="alert alert-success alert-dismissible fade show alert-div" role="alert">
+                  <p class="alert-p"><%- success -%> </p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% }%> 
+            <% if (error && error.length) {%> 
+                <div class="alert alert-danger alert-dismissible fade show alert-div" role="alert">
+                    <p class="alert-p"><%- error -%> </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% }%> 
+            <div class="row">
+
+                <div class="container-form p-4">
+                    <div class="col-md-12 fw-bold fs-3">Add Task</div>
+                    <div class="form-align">
+                        <form method="POST" class="row"  action=<%- `/employee/${employee._id}/add-task` %>  >
+                            <div class="mb-3 col-md-4">
+                                <label for="date" class="form-label">Choose date</label>
+                                <!-- <input type="date" class="form-control datePicker" id="date" name="date" max=<%- maxDate %> min=<%- minDate %>  required> -->
+                                <input type="date" class="form-control datePicker" id="date" name="date" max=<%- maxDate %> required>
+                            </div>
+                            <div class="mb-3 col-md-4">
+                                <label for="select" class="form-label">Choose Project</label>
+                                <select class="form-select" id="select" aria-label="Default select example" name="project" required>  
+                                    <% if (projects && projects.length) {%>
+                                        <option selected value="none">Choose...</option>
+                                        <% for (const project of projects) { %>
+                                        <option value=<%= [project._id, project.name] %> ><%= project.name %> </option>
+                                        <% } %>  
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-4">
+                                <label for="hours" class="form-label">Enter number of hours</label>
+                                <input type="number" class="form-control" id="hours" name="hours" min="1" id="hours" required step="any">
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="description" class="form-label">Describe your work</label>
+                                <textarea class="form-control" rows="2" id="description" name="description"></textarea>
+                            </div>
+
+                            <div class="col-md-12 text-center col-12">
+                                <button type="submit" class="btn btn-custom btn-submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid px-4 mb-5  w-75">
+
+            <ul class="list-group">
+                <div class="d-flex flex-row justify-content-between px-4 list-group-item">
+                    <p class="text-muted mb-1">Recent Tasks (hours on the left)</p>
+
+                </div>
+                <% if (employee.entries && employee.entries.length) { %>
+                    <% for (const entry of employee.entries) { %>
+                <li
+                    class="task-custom d-flex justify-content-between align-items-start position-relative list-group-item">
+                    <div class=" position-absolute start-0 top-0 test d-flex align-items-center p-2 h-100 hours">
+                        <%- entry.hours %> 
+                    </div>
+                    <div class="ms-2 ms-4 me-5">
+                        <div class="fw-bold"><%- entry.projectName %> </div>
+                        <p class="backquote-footer">Date: <%- entry.date.toLocaleString().split(",")[0] %> </p>
+                        <p><%- entry.description ? "Description: " + entry.description : ""%></p>
+                    </div>
+                    <form action=<%- `/employee/${employee._id}/delete-task/${entry._id}?_method=delete`%> method="POST">
+                        <div class=" position-absolute end-0 top-0  h-100">
+                            <button class="btn btn-danger w-100 h-100"><i class="bi icon-white bi-trash"></i></button>
+                        </div>
+                    </form>
+                </li>
+                    <% } %>  
+                <% } %> 
+            </ul>
+        </div>
+
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/javascript/date.js"></script>
+</body>
+
+</html>

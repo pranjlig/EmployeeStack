@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (success && success.length) {%> 
+        <div class="alert alert-success alert-dismissible fade show alert-div" role="alert">
+          <p class="alert-p"><%- success -%> </p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%> 
+    <% if (error && error.length) {%> 
+        <div class="alert alert-danger alert-dismissible fade show alert-div" role="alert">
+            <p class="alert-p"><%- error -%> </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% }%> 
+    <form action="/login" method="POST">
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div>
+            <select name="type" id="type">
+                <option value="Admin">Admin</option>
+                <option value="Employee">Employee</option>
+            </select>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>        
+        <button>Submit</button>
+    </form>
+    <form action="/signup" method="POST">
+        <div>
+            <label for="id">Registration ID: </label>
+            <input type="text" name="id" id="id">
+        </div>
+        <div>
+            <label for="set-password">Password</label>
+            <input type="password" name="password" id="set-password">
+        </div>
+        <div>
+            <label for="con-password">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="con-password">
+        </div>
+        <button>Submit</button>
+    </form>
+    <a href="/forgot-password">Forgot Password?</a>
+</body>
+</html>

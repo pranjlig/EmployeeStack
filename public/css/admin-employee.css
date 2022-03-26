@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+body,
+button {
+  font-family: "Inter", sans-serif;
+}
+:root {
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 56px;
+  --primary-color: #191c24;
+  --accent-color: #0f1015;
+}
+
+.sidebar-link:hover {
+  background-color: var(--accent-color);
+  border-radius: 10rem;
+
+  transition-duration: 300ms;
+}
+
+.light:hover {
+  color: white;
+}
+
+.navbar-custom {
+  background-color: var(--primary-color);
+}
+.sidebar-nav {
+  width: var(--offcanvas-width);
+}
+
+.content {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+.btn-custom {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-custom:hover {
+  background-color: #363e52;
+  color: white;
+}
+
+.cust-btn {
+  background-color: var(--accent-color);
+}
+
+.cust-btn:hover {
+  background-color: #363e52;
+}
+
+.email-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table {
+  border-collapse: collapse;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 5px 10px #e2e2e2;
+  text-align: start;
+  margin: 0;
+}
+
+thead {
+  /* background-color: var(--primary-color); */
+  background-color: var(--primary-color);
+
+  margin: 30px;
+  color: white;
+}
+
+th {
+  font-family: "montserrat", sans-serif;
+
+  letter-spacing: 0.1rem;
+  font-size: 1.32rem;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 2px;
+}
+/* 
+.my-custom-scrollbar {
+  height: 20rem;
+
+  overflow: scroll;
+  white-space: nowrap;
+}
+.table-wrapper-scroll-y {
+  display: block;
+} */
+
+/* th:first-child,
+td:first-child {
+  position: sticky;
+  position: -webkit-sticky;
+  left: 0;
+  z-index: 3;
+  background: var(--primary-color);
+  color: #fff;
+} */
+/* th:last-child,
+td:last-child {
+  position: sticky;
+  position: -webkit-sticky;
+  right: 0;
+  z-index: 3;
+  background: var(--primary-color);
+  color: #fff;
+} */
+
+/* td:nth-child(2)
+{
+
+
+z-index: -11;
+} */
+
+/* .scroll{
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+} */
+
+/* .test-col{
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+} */
+
+/* .table-scroll tfoot,
+.table-scroll tfoot th,
+.table-scroll tfoot td {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background: var(--primary-color);
+  color: #fff;
+  z-index:4;
+} */
+
+/* td {
+  font-family: "Poppins", sans-serif;
+  padding: 0.5rem 0.5rem;
+  border-top: rgb(226, 226, 226) solid 1px;
+  font-weight: 450;
+  color: #252525;
+} */
+
+.img-person {
+  padding-top: 1.25rem;
+  margin: auto;
+  fill: white;
+  width: 6rem;
+}
+
+.card {
+  background-color: var(--primary-color);
+  /* box-shadow: 0 5px 5px 0 var(--primary-color); */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-radius: 0.5rem;
+  color: white;
+
+  width: 12rem;
+}
+
+.btn-round {
+  border-radius: 100px;
+}
+.btn-submit {
+  width: 10rem;
+  height: 3rem;
+}
+.delete {
+  height: 100%;
+}
+
+.hours {
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px white;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.test:nth-child(2n + 2) {
+  background-color: rgb(197, 197, 197);
+  color: black;
+}
+
+.test:hover {
+  /* background-color:#2f3647; */
+  background-color: #363e52;
+  color: white;
+  transition-duration: 0.2s;
+}
+
+.task-custom:nth-child(2n + 2) {
+  background-color: rgb(197, 197, 197);
+  color: black;
+}
+
+.project-card {
+  position: relative;
+  height: 3.5rem;
+}
+
+.project-name {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  max-width: 30%;
+}
+
+.project-name-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-startdate {
+  position: absolute;
+  left: 35.5%;
+}
+
+.project-enddate {
+  position: absolute;
+  right: 28.5%;
+}
+
+.project-status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+  main {
+    margin-left: var(--offcanvas-width);
+  }
+  /* this is to remove the backdrop */
+  .offcanvas-backdrop::before {
+    display: none;
+  }
+  .sidebar-nav {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible !important;
+    height: calc(100% - var(--topNavbarHeight));
+    top: var(--topNavbarHeight);
+  }
+}
